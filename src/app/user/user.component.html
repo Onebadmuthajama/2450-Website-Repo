@@ -1,0 +1,26 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <i class="far fa-user"></i>
+    </div>
+
+    <!-- Login Form -->
+    <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+      <div class="form-group">
+        <input name="name" #name="ngModel" [(ngModel)]="_service.formData.name" type="text" id="name" class="fadeIn second form-control" required maxlength="50" placeholder="username">
+        <input name="password" #password="ngModel" [(ngModel)]="_service.formData.password" type="text" id="password" class="fadeIn third form-control" required maxlength="250" placeholder="password">
+        <input type="submit" [disabled]="form.invalid" class="fadeIn fourth form-control btn btn-primary" value="Log In">
+      </div>
+
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+    <!--   <a class="underlineHover" href="#">Forgot Password?</a> -->
+    </div>
+
+  </div>
+</div>
