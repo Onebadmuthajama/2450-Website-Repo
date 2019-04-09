@@ -2,9 +2,9 @@ export class Tasks {
   id: number;
   name: string;
   description: string;
-  category: string;
+  categoryId: number;
   priority: number;
-  startDate: Date;
-  endDate: Date;
+//  startDate: Date;
+//  endDate: Date;
   userId: number;
 }

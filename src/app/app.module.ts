@@ -19,23 +19,23 @@ const appRoutes: Routes = [
   {
     path: "categories/:userId",
     component: CategoriesComponent,
-    data: { title: 'Categories List' }
+    data: { title: "Categories List" }
   },
+//  {
+//    path: "categories/:userId/:categoryId",
+//    component: CategoriesComponent,
+//    data: { title: "Category" }
+//  },
   {
-    path: "categories/:userId/:categoryId",
-    component: CategoriesComponent,
-    data: { title: 'Category' }
-  },
-  {
-    path: "tasks/:userId",
+    path: "tasks/:userId/:categoryId",
     component: TasksComponent,
-    data: { title: 'Task List' }
+    data: { title: "Task List" }
   },
-  {
-    path: "tasks/:userId/:taskId",
-    component: TasksComponent,
-    data: { title: 'Task' }
-  },
+//  {
+//    path: "tasks/:userId/:taskId",
+//    component: TasksComponent,
+//    data: { title: 'Task' }
+//  },
   {
     path: "",
     redirectTo: "/users",

@@ -15,10 +15,6 @@ export class CategoriesService {
     return this._http.get(this.rootUrl + "/Categories/" + userId);
   }
 
-  // this call is not required, however, is being used in the favor of time.
-  // loadCategories returns ALL categories, with their ID, so in the UI we should
-  // be able to display using *ngIf(id = clicked object.id).  This is just easier
-  // for now though.
   loadCategory(userId: any, categoryId: any) {
     return this._http.get(this.rootUrl + "/Categories/" + userId + "/" + categoryId);
   }

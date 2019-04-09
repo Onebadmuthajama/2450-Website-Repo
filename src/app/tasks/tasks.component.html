@@ -1,3 +1,79 @@
-<p>
-  tasks works!
-</p>
+<div *ngIf="edit == false;">
+  <div class="container">
+    <div class="row">
+      <div class="card border-secondary col" style="margin-top: 15px">
+        <div class="card-header">
+          Create New Task
+        </div>
+        <div class="card-body">
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="form-group">
+              <input name="name" #name="ngModel" [(ngModel)]="_service.formData.name" type="text" class="form-control" id="name" required maxlength="50" placeholder="Name">
+            </div>
+
+            <div class="form-group">
+              <input name="description" #description="ngModel" [(ngModel)]="_service.formData.description" type="text" class="form-control" id="description" required max="250" placeholder="Description">
+            </div>
+
+            <div class="form-group">
+              <input name="priority" #priority="ngModel" [(ngModel)]="_service.formData.priority" type="number" class="form-control" id="priority" max="2" required placeholder="Priority">
+            </div>
+
+            <div class="form-group">
+              <input type="submit" [disabled]="form.invalid" class="btn btn-primary float-right form" value="Create">
+            </div>
+            <!-- Left in place in-case we decide we need to have button navigation outside of browser navigation. -->
+            <!-- <div class="form-group"> -->
+            <!--   <input (click)="fallback();" type="button" class="btn btn-primary float-left form" value="Go Back"> -->
+            <!-- </div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-bottom: 15px;">
+    <div class="row" *ngFor="let row of rows; index as i;">
+      <div class="card border-secondary col" style="margin-top: 15px">
+        <div class="card-header">
+          {{row.Name}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{row.Description}}</p>
+          <button (click)="editTask(row.Id, row.CategoryId);" type="button" class="btn btn-primary float-right" style="margin-right: 5px;">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="edit == true">
+  <div class="container">
+    <div class="row">
+      <div class="card border-secondary col" style="margin-top: 15px">
+        <div class="card-header">
+          Create New Task
+        </div>
+        <div class="card-body">
+          <form #form="ngForm" autocomplete="off" (submit)="updateTask(task.Id, form)">
+            <div class="form-group">
+              <input name="name" #name="ngModel" [(ngModel)]="task.Name" type="text" class="form-control" id="name" required maxlength="50">
+            </div>
+
+            <div class="form-group">
+              <input name="description" #description="ngModel" [(ngModel)]="task.Description" type="text" class="form-control" id="description" required max="250" placeholder="Description">
+            </div>
+
+            <div class="form-group">
+              <input name="priority" #priority="ngModel" [(ngModel)]="task.Priority" type="number" class="form-control" id="priority" max="2" required placeholder="Priority">
+            </div>
+            <div class="form-group">
+              <input type="submit" [disabled]="form.invalid" class="btn btn-primary float-right" value="Update">
+              <input type="button" (click)="edit=false;" class="btn btn-primary float-right form" value="Cancel" style="margin-right: 5px;">
+              <button (click)="deleteTask(task.Id)" type="button" class="btn btn-danger float-left" style="margin-right: 5px;">Delete</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

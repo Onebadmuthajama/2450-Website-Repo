@@ -1,5 +1,5 @@
 import { CategoriesService } from "./categories.service";
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -11,13 +11,11 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor(private readonly _service: CategoriesService, private readonly _changeDetector: ChangeDetectorRef, private readonly _route: ActivatedRoute, private readonly _router: Router, private readonly _toastr: ToastrService) {}
+  constructor(private readonly _service: CategoriesService, private readonly _route: ActivatedRoute, private readonly _router: Router, private readonly _toastr: ToastrService) {}
 
-  categories: any;
   userId: any;
   rows: any[];
   category: any;
-  view: any;
   edit = false;
 
   ngOnInit() {
@@ -34,7 +32,6 @@ export class CategoriesComponent implements OnInit {
       error => {
         console.log(error);
       });
-    this.view = 1;
   }
 
   resetForm(form?: NgForm) {
@@ -66,7 +63,7 @@ export class CategoriesComponent implements OnInit {
     this._service.deleteCategory(categoryId).subscribe(
       response => {
         let jsonResult = JSON.parse(JSON.stringify(response));
-        this._toastr.success(`${jsonResult.Name} Delete Successful`, "Task List Manager");
+        this._toastr.success(`${jsonResult.Name} Category Deleted Successfully`, "Task List Manager");
         this.ngOnInit();
       },
       error => {

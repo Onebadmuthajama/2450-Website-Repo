@@ -1,12 +1,12 @@
 <div *ngIf="edit == false;">
   <div class="container">
     <div class="row">
-      <div class="card border-dark col" style="margin-top: 15px">
+      <div class="card border-secondary col" style="margin-top: 15px">
         <div class="card-header">
           Create New Category
         </div>
         <div class="card-body">
-          <form #form="ngForm" class="card-body" autocomplete="off" (submit)="onSubmit(form)">
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
             <div class="form-group">
               <input name="name" #name="ngModel" [(ngModel)]="_service.formData.name" type="text" class="form-control" id="name" required maxlength="50" placeholder="Name">
             </div>
@@ -30,7 +30,7 @@
 
   <div class="container" style="margin-bottom: 15px;">
     <div class="row" *ngFor="let row of rows; index as i;">
-      <div class="card border-dark col" style="margin-top: 15px">
+      <div class="card border-secondary col" style="margin-top: 15px">
         <div class="card-header">
           {{row.Name}}
         </div>
@@ -46,12 +46,12 @@
 <div *ngIf="edit == true">
   <div class="container">
     <div class="row">
-      <div class="card border-dark col" style="margin-top: 15px">
+      <div class="card border-secondary col" style="margin-top: 15px">
         <div class="card-header">
           Create New Category
         </div>
         <div class="card-body">
-          <form #form="ngForm" class="card-body" autocomplete="off" (submit)="updateCategory(category.Id, form)">
+          <form #form="ngForm" autocomplete="off" (submit)="updateCategory(category.Id, form)">
             <div class="form-group">
               <input name="name" #name="ngModel"[(ngModel)]="category.Name" type="text" class="form-control" id="name" required maxlength="50">
             </div>
