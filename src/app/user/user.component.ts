@@ -19,19 +19,18 @@ export class UserComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();
-      this._service.formData = {
-        id: null,
-        name: "",
-        password: ""
-      };
     }
+    this._service.formData = {
+      id: null,
+      name: "",
+      password: ""
+    };
   }
 
   onSubmit(form: NgForm) {
     this._service.postUserForLogin(form.value).subscribe(
       response => {
-        // add routing to categories here, -> get categories by userId, include tasks
-        let jsonResult = JSON.parse(JSON.stringify(response));
+        const jsonResult = JSON.parse(JSON.stringify(response));
         this._toastr.success(`Login Successful for user with Id: ${jsonResult.Id}`, "Task List Manager");
         this._router.navigateByUrl(`/categories/${jsonResult.Id}`);
       },

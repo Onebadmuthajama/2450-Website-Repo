@@ -1,4 +1,4 @@
-import { BrowserModule } from  "@angular/platform-browser";
+import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -13,32 +13,31 @@ import { UserComponent } from "./user/user.component";
 
 import { UserService } from "./user/user.service";
 
-const appRoutes: Routes  = [
+const appRoutes: Routes = [
+  // using as a test route.
   { path: "category", component: CategoriesComponent },
-  // will need to have this route to view a categories tasks.
-  //{ path: 'category/:id', component: CategoryComponent },
   {
-    path: "categories/:id",
+    path: "categories/:userId",
     component: CategoriesComponent,
     data: { title: 'Categories List' }
   },
   {
-    path: "categories/:id/:id",
+    path: "categories/:userId/:categoryId",
     component: CategoriesComponent,
     data: { title: 'Category' }
   },
   {
-    path: "tasks/:id",
+    path: "tasks/:userId",
     component: TasksComponent,
     data: { title: 'Task List' }
   },
   {
-    path: "tasks/:id/:id",
+    path: "tasks/:userId/:taskId",
     component: TasksComponent,
     data: { title: 'Task' }
   },
-
-  { path: "",
+  {
+    path: "",
     redirectTo: "/users",
     pathMatch: "full"
   },
@@ -54,8 +53,7 @@ const appRoutes: Routes  = [
   ],
   imports: [
     RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true }
+      appRoutes
     ),
     BrowserModule,
     FormsModule,

@@ -1,3 +1,76 @@
-<p>
-  categories works!
-</p>
+<div *ngIf="edit == false;">
+  <div class="container">
+    <div class="row">
+      <div class="card border-dark col" style="margin-top: 15px">
+        <div class="card-header">
+          Create New Category
+        </div>
+        <div class="card-body">
+          <form #form="ngForm" class="card-body" autocomplete="off" (submit)="onSubmit(form)">
+            <div class="form-group">
+              <input name="name" #name="ngModel" [(ngModel)]="_service.formData.name" type="text" class="form-control" id="name" required maxlength="50" placeholder="Name">
+            </div>
+
+            <div class="form-group">
+              <input name="description" #description="ngModel" [(ngModel)]="_service.formData.description" type="text" class="form-control" id="description" required max="250" placeholder="Description">
+            </div>
+
+            <div class="form-group">
+              <input name="priority" #priority="ngModel" [(ngModel)]="_service.formData.priority" type="number" class="form-control" id="priority" max="2" required placeholder="Priority">
+            </div>
+
+            <div class="form-group">
+              <input type="submit" [disabled]="form.invalid" class="btn btn-primary float-right form" value="Create">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-bottom: 15px;">
+    <div class="row" *ngFor="let row of rows; index as i;">
+      <div class="card border-dark col" style="margin-top: 15px">
+        <div class="card-header">
+          {{row.Name}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{row.Description}}</p>
+          <a href="tasks/{{row.UserId}}/{{row.Id}}" type="button" class="btn btn-primary float-right" style="margin-right: 5px;">Tasks</a>
+          <button (click)="editCategory(row.UserId,row.Id);" type="button" class="btn btn-primary float-right" style="margin-right: 5px;">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="edit == true">
+  <div class="container">
+    <div class="row">
+      <div class="card border-dark col" style="margin-top: 15px">
+        <div class="card-header">
+          Create New Category
+        </div>
+        <div class="card-body">
+          <form #form="ngForm" class="card-body" autocomplete="off" (submit)="updateCategory(category.Id, form)">
+            <div class="form-group">
+              <input name="name" #name="ngModel"[(ngModel)]="category.Name" type="text" class="form-control" id="name" required maxlength="50">
+            </div>
+
+            <div class="form-group">
+              <input name="description" #description="ngModel" [(ngModel)]="category.Description" type="text" class="form-control" id="description" required max="250" placeholder="Description">
+            </div>
+
+            <div class="form-group">
+              <input name="priority" #priority="ngModel" [(ngModel)]="category.Priority" type="number" class="form-control" id="priority" max="2" required placeholder="Priority">
+            </div>
+            <div class="form-group">
+              <input type="submit" [disabled]="form.invalid" class="btn btn-primary float-right" value="Update">
+              <input type="button" (click)="edit=false;" class="btn btn-primary float-right form" value="Cancel" style="margin-right: 5px;">
+              <button (click)="deleteCategory(category.Id)" type="button" class="btn btn-danger float-left" style="margin-right: 5px;">Delete</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
